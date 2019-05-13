@@ -1,0 +1,11 @@
+Ecuaciones_Diferenciales
+Elementos_de_Fisica
+Logica_Computacional
+Algoritmos_y_Estucturas_de_Datos
+Estadistica
+Algebra_Abstracta
+Constitucion_Politica
+Escritura_de_Ensayos
+Manejo_de_Bases_de_Datos
+Optimizacion
+Pensamiento_Matematico
