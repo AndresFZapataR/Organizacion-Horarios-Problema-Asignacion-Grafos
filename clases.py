@@ -8,10 +8,11 @@ class Node:
     def __init__(self,label):
         self.label = label
 
-    def __init__(self,label,cape,caps):
+    def __init__(self,label,cape,caps, lista):
         self.label = label
         self.entrada = cape
         self.salida = caps
+        self.ie = lista
         
     def __eq__(self,other):
     	return self.label == other.label
