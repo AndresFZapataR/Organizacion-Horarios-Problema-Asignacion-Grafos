@@ -1,77 +1,68 @@
 class Node:
-
-    label = ' '
-    entrada = 0
-    salida = 0
-    ie = []
-
-    def __init__(self,label):
+    
+    name = ""
+    label = ""
+    
+    def __init__(self,name,label):
         self.label = label
+        self.name = name
 
-    def __init__(self,label,cape,caps, lista):
-        self.label = label
-        self.entrada = cape
-        self.salida = caps
-        self.ie = lista
-        
+    def __str__(self):
+        return self.name
+
     def __eq__(self,other):
-    	return self.label == other.label
+    	return self.name == other.name
 
-    def name(self):
+    def getName(self):
+        return self.name
+
+    def getLabel(self):
         return self.label
 
-    def setEntrada(self,newe):
-        self.entrada = newe
-
-    def setSalida(self,news):
-        self.salida = news
-    
-    def getEdges(self):
-    	return self.ie
 
 class Edge:
 
-    t = Node(' ')
-    h = Node(' ')
-	f = 0
-    cap = 0
-    label = ' '
+    tail = None
+    head = None
+    capacity = 0
+    flow = 0
+    label = ""
 
-    def __init__(self, tail, head,flujo, cap, label):
-        self.t = tail
-        self.h = head
-        self.f = flujo
-        self.cap = cap
-        self.label = label
+    def __init__(self, tail, head,flow, cap):
+        self.tail = tail
+        self.head = head
+        self.flow = flow
+        self.capacity = cap
+        self.label = "(" + tail.getName() + "," + head.getName() + ")"
+        
+    def __str__(self):
+        return self.label
        
     def __eq__(self,other):
-    	if(self.t == other.t and self.h == other.h and self.cap == other.cap):
+    	if(self.tail == other.tail and self.head == other.head and self.capacity == other.capacity):
     		return True
-    	elif(self.t == other.h and self.h == other.t and self.cap == other.cap):
+    	elif(self.tail == other.head and self.head == other.tail and self.capacity == other.capacity):
     		return True
     	else:
     		return False
 
-    def tail(self):
-        return self.t
+    def getTail(self):
+        return self.tail
 
-    def head(self):
-        return self.h
+    def getHead(self):
+        return self.head
 
     def capacity(self):
-        return self.cap
+        return self.capacity
         
-	def flujo(self):
-		return self.f
-
-    def label(self):
-        return self.label
+    def getFlow(self):
+        return self.flow
 
     def setCapacity(self, newcap):
-        self.cap = newcap
+        self.capacity = newcap
     
-    def setFlujo(self,newflujo):
-    	self.f = newflujo
+    def setFlow(self,newflow):
+    	self.flow = newflow
 
 class Graph:
 
@@ -82,8 +73,8 @@ class Graph:
         self.V = nodes
         self.E = edges
 
-    def nodes(self):
+    def getNodes(self):
         return self.V
 
-    def edges(self):
-	return self.E
+    def getEdges(self):
+        return self.E

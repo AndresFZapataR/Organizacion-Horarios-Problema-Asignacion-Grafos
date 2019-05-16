@@ -1,5 +1,7 @@
 import tkinter as tk
+from clases import *
 from tkinter import ttk
+from nodos import CrearNodo
 
 count = 0
 materias = []
@@ -17,10 +19,12 @@ def asigs(entr, wn):
         lb.delete(selecl[0])
         asigs.pop(selecl[0])
         cant = int(ent.get())
+        nodos = CrearNodo(materias)
+        
         if cant == len(materias):
             wn = tk.Tk()
             wn.title("horario")
-    
+        
     main = tk.Tk()
     main.geometry("500x500")
     main.title("Seleccion de asignaturas")
@@ -35,7 +39,7 @@ def asigs(entr, wn):
     cantidad = tk.Entry(main)
     cantidad.grid(column=1, row=0)
     name = entr.get()
-    file = open(name + ".txt", "r")
+    file = open("Estudiantes\\" + name + ".txt", "r")
     for i in file:
         asignaturas.append(i[0:len(i)-1])
     lista = tk.Listbox(main, selectmode=tk.EXTENDED)
