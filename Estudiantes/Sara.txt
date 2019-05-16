@@ -1,7 +1,7 @@
 Ecuaciones_Diferenciales
 Elementos_de_Fisica
 Logica_Computacional
-Algoritmos_y_Estucturas_de_Datos
+Algoritmos_y_Estructuras_de_Datos
 Estadistica
 Algebra_Abstracta
 Constitucion_Politica
