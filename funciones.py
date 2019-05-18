@@ -12,20 +12,21 @@ def delete(horarios):
         for k in range(len(hora1)):
                 hora1[k] = hora1[k].split("-")
         j = i + 1
+        print(hora1)
         while(j < len(horarios)):
             
             hora2 = horarios[j].split(" ")
             delete = False
             for k in range(len(hora2)):
                 hora2[k] = hora2[k].split("-")
-            
+            print(hora2)
             if (len(hora1) >= len(hora2)):
                 for k in hora1:
                     ini = int(k[1])
                     fin = int(k[2])
                     for z in hora2:
                         if(k[0] == z[0] and not delete):
-                            if(int(z[1]) in range(ini,fin+1) or int(z[2]) in range(ini+1,fin+1)):
+                            if(int(z[1]) in range(ini,fin) or int(z[2]) in range(ini+1,fin+1)):
                                 horarios.pop(j)
                                 if(j != i+1):
                                     j = j - 1
@@ -37,7 +38,7 @@ def delete(horarios):
                     fin = int(k[2])
                     for z in hora1:
                         if(k[0] == z[0] and not delete):
-                            if(int(z[1]) in range(ini,fin+1) or int(z[2]) in range(ini+1,fin+1)):
+                            if(int(z[1]) in range(ini,fin) or int(z[2]) in range(ini+1,fin+1)):
                                 horarios.pop(i)
                                 i = i - 1
                                 j = j - 1
@@ -94,7 +95,7 @@ def initEdges(nodes, asignaturas, horarios):
                         fin = int(x[2])
                         for h in horas2:
                             if(x[0] == h[0]):
-                                if(int(h[1]) in range(ini,fin+1) or int(h[2]) in range(ini+1,fin+1)):
+                                if(int(h[1]) in range(ini,fin) or int(h[2]) in range(ini+1,fin+1)):
                                     indice = k
                 else:
                     for x in horas2:
@@ -102,7 +103,7 @@ def initEdges(nodes, asignaturas, horarios):
                         fin = int(x[2])
                         for h in horas1:
                             if(x[0] == h[0]):
-                                if(int(h[1]) in range(ini,fin+1) or int(h[2]) in range(ini+1,fin+1)):
+                                if(int(h[1]) in range(ini,fin) or int(h[2]) in range(ini+1,fin+1)):
                                     indice = k
             
             if(indice != 0):
@@ -113,7 +114,7 @@ def initEdges(nodes, asignaturas, horarios):
         edges.append(Edge(nodes[len(nodes)-2],nodes[i],0))
         edges.append(Edge(nodes[i],nodes[len(nodes)-2],1))
 
-    for i in range(len(asignaturas),len(nodos)-2):
+    for i in range(len(asignaturas),len(nodes)-2):
         edges.append(Edge(nodes[i],nodes[len(nodes)-1],0))
         edges.append(Edge(nodes[len(nodes)-1],nodes[i],1))
 
@@ -122,34 +123,33 @@ def initEdges(nodes, asignaturas, horarios):
 def Horario(lista):
     asig = []
     hora = []
-    aux = []
-    h = []
     
     for i in lista:
         asig.append(i.getTail().getName())
         hora.append(i.getHead().getName())
 
     for i in range(len(asig)):
+        h = []
         file = open("Asignaturas\\" + asig[i] +".txt", "r")
         for j in file:
             h.append(j[0:len(j)-1])
-
+        aux = []
         for j in h:
             if(j == ''):
                 aux.append(j)
         h = aux
-        
+        print("lectura")
         eq = False  
         for j in h:
             if(hora[i] == j):
                 eq = True
-            elif(!eq):
-                hora1 = hora[i].split(" ")
-                for k in range(len(hora1)):
-                    hora1[k] = hora1[k].split("-")
-                horas2.split(" ")
+            elif(not eq):
+                horas1 = hora[i].split(" ")
+                for k in range(len(horas1)):
+                    horas1[k] = horas1[k].split("-")
+                horas2 = j.split(" ")
                 for k in range(len(horas2)):
-                    horas2.split("-")
+                    horas2[k]= horas2[k].split("-")
                     
                 if(len(horas1) >= len(horas2)):
                     for k in horas1:
@@ -157,7 +157,7 @@ def Horario(lista):
                         fin = int(k[2])
                         for x in horas2:
                             if(k[0] == x[0]):
-                                if(int(x[1]) in range(ini,fin+1) or int(x[2]) in range(ini+1,fin+1)):
+                                if(int(x[1]) in range(ini,fin) or int(x[2]) in range(ini+1,fin+1)):
                                     hora[i] = j
                 else:
                     for k in horas2:
@@ -165,9 +165,11 @@ def Horario(lista):
                         fin = int(k[2])
                         for x in horas1:
                             if(k[0] == x[0]):
-                                if(int(x[1]) in range(ini,fin+1) or int(x[2]) in range(ini+1,fin+1)):
+                                if(int(x[1]) in range(ini,fin) or int(x[2]) in range(ini+1,fin+1)):
                                     hora[i] = j
-                
+    print("return")
+    return (asig,hora)
+"""                
 file = open("Estudiantes\\Sara.txt", "r")
 asignaturas = []
 for i in file:
@@ -189,3 +191,4 @@ aristas = initEdges(nodos, asignaturas, horario)
 
 for i in aristas:
     print(i)
+"""

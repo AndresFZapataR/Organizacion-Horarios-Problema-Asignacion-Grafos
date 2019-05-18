@@ -34,7 +34,7 @@ class Edge:
         self.label = "(" + tail.getName() + "," + head.getName() + ")"
         
     def __str__(self):
-        return self.label
+        return self.label + str(self.getFlow())
        
     def __eq__(self,other):
     	if(self.tail == other.tail and self.head == other.head):
@@ -74,7 +74,7 @@ class Graph:
 
     def getRev(self,e):
         for i in self.getEdges():
-            if(e.tail() == i.head() and e.head() == i.tail()):
+            if(e.getTail() == i.getHead() and e.getHead() == i.getTail()):
                 return i
         return None
     
@@ -83,49 +83,49 @@ class Graph:
             return p
         else:
             for i in self.getEdges():
-                if(i.getTail() == u and i.getHead() not in used and i.getFlow() != 0):
+                if(i.getTail() == u and i not in used and i.getFlow() == 0):
                     p.append(i)
                     used.append(i)
-                    return hgetPath(self,i.getHead(),v,p)
-            
-            t = p[len(p)]
+                    return self.hgetPath(i.getHead(),v,p,used)
+            t = p[len(p)-1].getTail()
             p = p[0:len(p)-1]
-            return hgetPath(self,t,v,p,used)
+            return self.hgetPath(t,v,p,used)
 
     def getPath(self,u,v):
-        return hgetPath(self,u,v,[],[])
+        return self.hgetPath(u,v,[],[])
 
     def hcut(self,u,v,p,used):
         if(u == v):
             return False
         else:
             for i in self.getEdges():
-                if(i.getTail() == u and i.getHead() not in used and i.getFlow() != 0):
+                if(i.getTail() == u and i not in used and i.getFlow() == 0):
                     p.append(i)
                     used.append(i)
-                    return hcut(self,u,v,p,used)
+                    return self.hcut(i.getHead(),v,p,used)
             
             if(len(p) == 0):
                 return True
             else:
-                t = p[len(p)]
+                t = p[len(p)-1].getTail()
                 p = p[0:len(p)-1]
-                return hcut(self,u,v,p,used)
+                return self.hcut(t,v,p,used)
 
     def cut(self,u,v):
-        return hcut(self,u,v,[],[])
+        return self.hcut(u,v,[],[])
 
     def ford_fulkerson(self,s,t):
 
-        while(cut(self,s,t)):
-            for i in getPath(self,s,t):
+        while(not self.cut(s,t)):
+            print("si hay p")
+            for i in self.getPath(s,t):
                 i.setFlow(1)
-                self.getRev(i).setFlow(0)
+                (self.getRev(i)).setFlow(0)
 
     def getHorario(self):
         H = []
         for i in self.getEdges():
-            if(i.getFlow() == 1 and i.tail().getLabel() == "M"):
+            if(i.getFlow() == 1 and (i.getTail()).getLabel() == "A" and (i.getHead().getLabel() == "H")):
                 H.append(i)
         return H
                     

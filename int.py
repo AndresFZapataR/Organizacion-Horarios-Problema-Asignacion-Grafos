@@ -1,7 +1,8 @@
 import tkinter as tk
-from clases import *
 from tkinter import ttk
-from nodos import CrearNodo
+from clases import *
+import funciones as f
+
 
 count = 0
 materias = []
@@ -19,11 +20,46 @@ def asigs(entr, wn):
         lb.delete(selecl[0])
         asigs.pop(selecl[0])
         cant = int(ent.get())
-        nodos = CrearNodo(materias)
-        
         if cant == len(materias):
+            print(materias)
+            horarios = []
+            for i in materias:
+                file = open("Asignaturas\\" + i + ".txt", "r")
+                hora = []
+                for j in file:
+                    hora.append(j[0:len(j)-1])
+                
+                for j in hora:
+                    if(j != ''):
+                        horarios.append(j)
+            horarios = f.delete(horarios)
+            print("horarios")
+            for i in horarios:
+                print(i)
+            nodes = f.initNodes(materias,horarios)
+            edges = f.initEdges(nodes,materias,horarios)
+            print("nodos y aristeas")
+            for i in nodes:
+                print(i)
+            for i in edges:
+                print(i)
+            G = Graph(nodes,edges)
+            G.ford_fulkerson(nodes[len(nodes)-2],nodes[len(nodes)-1])
+            print("G")
+            for i in G.getNodes():
+                print(i)
+            for i in G.getEdges():
+                print(i)
+            H = G.getHorario()
+            print("H")
+            for i in H:
+                print(i)
+            final = f.Horario(H)
+            print(final)
             wn = tk.Tk()
             wn.title("horario")
+            
+            
         
     main = tk.Tk()
     main.geometry("500x500")
