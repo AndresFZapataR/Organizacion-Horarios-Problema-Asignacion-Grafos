@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Created on Sun May 12 12:15:27 2019
+
+@author: Sara Palacios & Andrés Zapata
+"""
 class Node:
     
     name = ""

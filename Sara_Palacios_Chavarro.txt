@@ -1,0 +1,10 @@
+Calculo_3
+Elementos_de_Fisica
+Logica_Teoria_de_Numeros_y_Conjuntos
+Teoria_de_Grafos
+Probabilidad
+Arquitectura_del_Computador
+Algebra_Abstracta_y_Codificacion
+Algebra_Lineal
+Ecuaciones_Diferenciales
+Optimizacion

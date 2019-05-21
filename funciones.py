@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Created on Thurs May 12 18:05:36 2019
+
+@author: Sara Palacios & Andrés Zapata
+"""
 from clases import *
 
 def delete(horarios):
