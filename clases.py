@@ -124,7 +124,7 @@ class Graph:
     def ford_fulkerson(self,s,t):
 
         while(not self.cut(s,t)):
-            print("si hay p")
+            
             for i in self.getPath(s,t):
                 i.setFlow(1)
                 (self.getRev(i)).setFlow(0)

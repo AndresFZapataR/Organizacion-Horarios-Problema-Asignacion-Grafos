@@ -1,0 +1,4 @@
+Algebra_Abstracta_y_Codificacion
+Manejo_de_Bases_de_Datos
+Optimizacion
+Estadistica
